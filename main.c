@@ -16,7 +16,7 @@ void runtweeks()
             essentialTweeks();
             break;
         case 2:
-            system("cls");
+            miscTweeks();
             // system("tweeks.exe");
             break;
         case 3:
