@@ -17,7 +17,7 @@ void essentialTweeks()
             system("powershell Checkpoint-Computer -Description 'Restore Point' -RestorePointType 'MODIFY_SETTINGS'");
             break;
         case 2:
-            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\disableWifiSense.ps1");
+            system("powershell -ExecutionPolicy Bypass -File '.\\scripts\\tweeks\\disableWifiSense.ps1'");
             break;
         case 3:
             system("powershell Write-Host 'Disabling Activity History'");
