@@ -161,3 +161,31 @@ void miscTweeks()
         }
     }
 }
+
+void changeDNS()
+{
+    int choice;
+    while (1)
+    {
+        printf("1. Google\n2. Cloud Flare\n3. Open DNS\n4. Cancel\n");
+        printf("Select DNS Server: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\changeDNS.ps1 Google");
+            break;
+        case 2:
+            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\changeDNS.ps1 Cloud");
+            break;
+        case 3:
+            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\changeDNS.ps1 Open");
+            break;
+        case 4:
+            return;
+        default:
+            printf("Invalid choice");
+            break;
+        }
+    }
+}

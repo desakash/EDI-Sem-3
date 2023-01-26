@@ -1,6 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "install.h"
 #include "tweeks.h"
+
+void runinstall()
+{
+    int choice;
+    while (1)
+    {
+        printf("1. Browsers\n2. Communications\n3. Development\n4. Pro Tools\n5. Multimedia\n6. Utilities\n7. Go Back\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            browsers();
+            break;
+        case 2:
+            communications();
+            break;
+        case 3:
+            development();
+            break;
+        case 4:
+            proTools();
+            break;
+        case 5:
+            multimedia();
+            break;
+        case 6:
+            utilities();
+            break;
+        case 7:
+            return;
+        default:
+            printf("Invalid choice");
+            break;
+        }
+    }
+}
 
 void runtweeks()
 {
@@ -17,14 +55,11 @@ void runtweeks()
             break;
         case 2:
             miscTweeks();
-            // system("tweeks.exe");
             break;
         case 3:
-            system("cls");
-            // system("config.exe");
+            changeDNS();
             break;
         case 4:
-            system("cls");
             return;
         default:
             printf("Invalid choice");
@@ -40,15 +75,18 @@ int main()
     int choice;
     while (1)
     {
-        printf("\n1. Tweeks\n2. Exit\n");
+        printf("\n1. Installs\n2. Tweaks\n3. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
         {
         case 1:
-            runtweeks();
+            runinstall();
             break;
         case 2:
+            runtweeks();
+            break;
+        case 3:
             return 0;
         default:
             printf("Invalid choice");
