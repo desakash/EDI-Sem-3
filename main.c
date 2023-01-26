@@ -36,6 +36,7 @@ void runtweeks()
 int main()
 {
     system("powershell -ExecutionPolicy Bypass -File .\\scripts\\checkChocolatey.ps1");
+    system("powershell -ExecutionPolicy Bypass -File .\\scripts\\wingetInstall.ps1");
     int choice;
     while (1)
     {
