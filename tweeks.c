@@ -117,7 +117,7 @@ void miscTweeks()
     int choice;
     while (1)
     {
-        printf("1. Show File Extension\n2. Set Display For Performance\n3. Set Time to UTC\n4. Remove Cortana\n5. Disable Real Time Monitoring\n6. Go Back\n");
+        printf("1. Show File Extension\n2. Set Display For Performance\n3. Set Time to UTC\n4. Remove Cortana\n5. Disable Real Time Monitoring\n6. Disable notifications\n7. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -141,6 +141,12 @@ void miscTweeks()
             system("powershell Set-MpPreference -DisableRealtimeMonitoring $True");
             break;
         case 6:
+            system("powershell Write-Host 'Disabling Notifications...'");
+            system("powershell New-Item -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows' -Name 'Explorer' -force");
+            system("powershell New-ItemProperty -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows\\Explorer' -Name 'DisableNotificationCenter' -PropertyType 'DWord' -Value 1");
+            system("powershell New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\PushNotifications' -Name 'ToastEnabled' -PropertyType 'DWord' -Value 0 -force");
+            break;
+        case 7:
             return;
         default:
             printf("Invalid choice");
