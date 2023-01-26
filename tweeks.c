@@ -143,7 +143,7 @@ void miscTweeks()
         case 6:
             system("powershell Write-Host 'Disabling Notifications...'");
             char *path = getFromcsv("Explorer");
-            char main[1000] = "powershell New-Item -Path '";
+            char *main = "powershell New-Item -Path '";
             strcat(main, path);
             strcat(main, "' -Name 'Explorer' -force");
             system(main);
