@@ -142,9 +142,20 @@ void miscTweeks()
             break;
         case 6:
             system("powershell Write-Host 'Disabling Notifications...'");
-            system("powershell New-Item -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows' -Name 'Explorer' -force");
-            system("powershell New-ItemProperty -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows\\Explorer' -Name 'DisableNotificationCenter' -PropertyType 'DWord' -Value 1");
-            system("powershell New-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\PushNotifications' -Name 'ToastEnabled' -PropertyType 'DWord' -Value 0 -force");
+            char *path = getFromcsv("Explorer");
+            char main[1000] = "powershell New-Item -Path '";
+            strcat(main, path);
+            strcat(main, "' -Name 'Explorer' -force");
+            system(main);
+            main = "powershell New-ItemProperty -Path '";
+            path = getFromcsv("DisableNotificationCenter");
+            strcat(main, path);
+            strcat(main, "' -Name 'DisableNotificationCenter' -PropertyType 'DWord' -Value 1");
+            system(main);
+            path = getFromcsv("ToastEnabled");
+            strcat(main, path);
+            strcat(main, "' -Name 'DisableNotificationCenter' -PropertyType 'DWord' -Value 1");
+            system(main);
             break;
         case 7:
             return;
