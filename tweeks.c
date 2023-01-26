@@ -81,14 +81,7 @@ void essentialTweeks()
             printf("\n");
             break;
         case 4:
-            system("powershell Write-Host 'Delete Temp Files'");
-            system("powershell Get-ChildItem -Path 'C:\\Windows\\Temp' *.* -Recurse | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue");
-            system("powershell Get-ChildItem -Path $env:TEMP *.* -Recurse | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue");
-            system("powershell Write-Host '======================================='");
-            system("powershell Write-Host '--- Cleaned following folders:'");
-            system("powershell Write-Host '--- C:\\Windows\\Temp'");
-            system("powershell Write-Host '--- '$env:TEMP");
-            system("powershell Write-Host '======================================='");
+            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\deleteTempFiles.ps1");
             printf("\n");
             break;
         case 5:
@@ -141,16 +134,12 @@ void miscTweeks()
             setRegistry("RealTimeIsUniversal", 1);
             break;
         case 4:
-            system("powershell Write-Host 'Removing Cortana...'");
-            system("powershell Get-AppxPackage -AllUsers Microsoft.549981C3F5F10 | Remove-AppPackage");
+            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\removeCortana.ps1");
             break;
         case 5:
             system("powershell Write-Host 'Disabling Real Time Monitoring...'");
             system("powershell Set-MpPreference -DisableRealtimeMonitoring $True");
             break;
-        // case 6:
-        //     system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\disableTPM.ps1");
-        //     break;
         case 6:
             return;
         default:
