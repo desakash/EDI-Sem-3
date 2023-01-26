@@ -8,6 +8,7 @@ void runinstall()
     int choice;
     while (1)
     {
+        system("cls");
         printf("1. Browsers\n2. Communications\n3. Development\n4. Pro Tools\n5. Multimedia\n6. Utilities\n7. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -45,6 +46,7 @@ void runtweeks()
     int choice;
     while (1)
     {
+        system("cls");
         printf("1. Essential Tweeks\n2. Misc. Tweeks\n3. Change DNS\n4. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -75,6 +77,7 @@ int main()
     int choice;
     while (1)
     {
+        system("cls");
         printf("\n1. Installs\n2. Tweaks\n3. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);

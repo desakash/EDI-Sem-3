@@ -14,10 +14,7 @@ char *getFromcsv(char *key)
     while (feof(fp) != true)
     {
         fgets(row, 1000, fp);
-        printf("\nRow: %s\n", row);
-
         found = strtok(row, ",");
-
         while (found != NULL)
         {
             if (strcmp(found, key) == 0)
@@ -28,7 +25,6 @@ char *getFromcsv(char *key)
             }
             if (flag == 1)
             {
-                printf("\nFound: %s\n", found);
                 flag = 0;
                 return found;
             }
@@ -57,6 +53,7 @@ void essentialTweeks()
     int choice;
     while (1)
     {
+        system("cls");
         printf("1. Create Restore Point\n2. Disable Wifi Sense\n3. Disable Activity History\n4. Delete Temporary Files\n5. Run Disk Cleanup\n6. Disable Location Tracking\n7. Disable Storage Sense\n8. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -117,6 +114,7 @@ void miscTweeks()
     int choice;
     while (1)
     {
+        system("cls");
         printf("1. Show File Extension\n2. Set Display For Performance\n3. Set Time to UTC\n4. Remove Cortana\n5. Disable Real Time Monitoring\n6. Disable notifications\n7. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -167,6 +165,7 @@ void changeDNS()
     int choice;
     while (1)
     {
+        system("cls");
         printf("1. Google\n2. Cloud Flare\n3. Open DNS\n4. Cancel\n");
         printf("Select DNS Server: ");
         scanf("%d", &choice);
