@@ -124,7 +124,7 @@ void miscTweeks()
     int choice;
     while (1)
     {
-        printf("1. Show File Extension\n2. Set Display For Performance\n3. Set Time to UTC\n4. Remove Cortana\n5. Disable Real Time Monitoring\n6. Disable TPM Check\n7. Go Back\n");
+        printf("1. Show File Extension\n2. Set Display For Performance\n3. Set Time to UTC\n4. Remove Cortana\n5. Disable Real Time Monitoring\n6. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -148,10 +148,10 @@ void miscTweeks()
             system("powershell Write-Host 'Disabling Real Time Monitoring...'");
             system("powershell Set-MpPreference -DisableRealtimeMonitoring $True");
             break;
+        // case 6:
+        //     system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\disableTPM.ps1");
+        //     break;
         case 6:
-            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\disableTPM.ps1");
-            break;
-        case 7:
             return;
         default:
             printf("Invalid choice");
