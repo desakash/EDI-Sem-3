@@ -91,18 +91,25 @@ void communications()
         switch (choice)
         {
         case 1:
+            processInstall("discord");
             break;
         case 2:
+            processInstall("signal");
             break;
         case 3:
+            processInstall("skype");
             break;
         case 4:
+            processInstall("slack");
             break;
         case 5:
+            processInstall("microsoft-teams");
             break;
         case 6:
+            processInstall("telegram");
             break;
         case 7:
+            processInstall("zoom");
             break;
         case 8:
             printf("\n");
@@ -126,18 +133,25 @@ void development()
         switch (choice)
         {
         case 1:
+            processInstall("atom");
             break;
         case 2:
+            processInstall("git");
             break;
         case 3:
+            processInstall("git;github-desktop");
             break;
         case 4:
+            processInstall("temurin8jre");
             break;
         case 5:
+            processInstall("temurin16jre");
             break;
         case 6:
+            processInstall("temurin18jre");
             break;
         case 7:
+            processInstall("jetbrainstoolbox");
             break;
         case 8:
             development2();
@@ -164,18 +178,25 @@ void development2()
         switch (choice)
         {
         case 10:
+            processInstall("nodejs");
             break;
-        case 1:
+        case 11:
+            processInstall("nodejs-lts");
             break;
         case 12:
+            processInstall("python");
             break;
         case 13:
+            processInstall("rust");
             break;
         case 14:
+            processInstall("sublimetext4");
             break;
         case 15:
+            processInstall("vscode,Git.Git");
             break;
         case 16:
+            processInstall("notepadplusplus");
             break;
         case 17:
             return;
