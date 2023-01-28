@@ -219,12 +219,16 @@ void multimedia()
         switch (choice)
         {
         case 1:
+            processInstall("audacity");
             break;
         case 2:
+            processInstall("gimp");
             break;
         case 3:
+            processInstall("obs-studio");
             break;
         case 4:
+            processInstall("vlc");
             break;
         case 5:
             printf("\n");
@@ -248,18 +252,25 @@ void proTools()
         switch (choice)
         {
         case 1:
+            processInstall("advanced-ip-scanner");
             break;
         case 2:
+            processInstall("putty");
             break;
         case 3:
+            processInstall("wireshark");
             break;
         case 4:
+            processInstall("onedrive");
             break;
         case 5:
+            processInstall("powershell-core");
             break;
         case 6:
+            processInstall("powertoys");
             break;
         case 7:
+            processInstall("microsoft-windows-terminal");
             break;
         case 8:
             printf("\n");
@@ -283,18 +294,25 @@ void utilities()
         switch (choice)
         {
         case 1:
+            processInstall("7zip");
             break;
         case 2:
+            processInstall("anydesk");
             break;
         case 3:
+            processInstall("cpu-z");
             break;
         case 4:
+            processInstall("gpu-z");
             break;
         case 5:
+            processInstall("qbittorrent");
             break;
         case 6:
+            processInstall("rufus");
             break;
         case 7:
+            processInstall("teamviewer9");
             break;
         case 8:
             printf("\n");
