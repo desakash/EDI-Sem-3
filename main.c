@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "install.h"
 #include "tweeks.h"
+#include "util.h"
 
 void runinstall()
 {
@@ -78,7 +79,7 @@ int main()
     while (1)
     {
         printf("\n");
-        printf("\n1. Installs\n2. Tweaks\n3. Exit\n");
+        printf("\n1. Installs\n2. Tweaks\n3. Restart\n4. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -90,6 +91,9 @@ int main()
             runtweeks();
             break;
         case 3:
+            askRestart();
+            break;
+        case 4:
             return 0;
         default:
             printf("Invalid choice");
