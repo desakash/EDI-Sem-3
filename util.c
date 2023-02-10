@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 void askRestart()
 {
@@ -7,7 +9,7 @@ void askRestart()
     int choice;
     while (1)
     {
-        system("cls");
+        printf("\n");
         printf("1. Restart Now\n2. Restart Later\n");
         printf("Select: ");
         scanf("%d", &choice);
@@ -31,7 +33,7 @@ char *getAppCode(char *name)
     char row[100];
     char *found;
     int flag = 0;
-    fp = fopen("applications.csv", "r");
+    fp = fopen("data/applications.csv", "r");
 
     while (feof(fp) != true)
     {
@@ -61,7 +63,7 @@ char *getFromcsv(char *key)
     char row[1000];
     char *found;
     int flag = 0;
-    fp = fopen("locations.csv", "r");
+    fp = fopen("data/locations.csv", "r");
 
     while (feof(fp) != true)
     {
@@ -96,7 +98,6 @@ void setRegistry(char *name, int value)
     char val[10];
     sprintf(val, "%d", value);
     strcat(main, val);
-    printf("\nmain: %s\n", main);
     system(main);
 }
 
