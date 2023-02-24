@@ -77,7 +77,7 @@ void runconfig()
     while (1)
     {
         printf("\n");
-        printf("1. Windows Features\n2. Open Windows Legacy Panels\n3. Go Back\n");
+        printf("1. Windows Features\n2. Open Windows Legacy Panels\n3. System Curroption Scan\n4. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -89,6 +89,16 @@ void runconfig()
             legacyPanels();
             break;
         case 3:
+            printf("\n(1/4) Checking Disk");
+            system("powershell Chkdsk /scan");
+            printf("\n(2/4) SFC - 1st scan");
+            system("powershell sfc /scannow");
+            printf("\n(3/4) DISM");
+            system("powershell DISM /Online /Cleanup-Image /Restorehealth");
+            printf("\n(2/4) SFC - 2nd scan");
+            system("powershell sfc /scannow");
+            break;
+        case 4:
             return;
         default:
             printf("Invalid choice");
