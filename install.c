@@ -40,7 +40,6 @@ void browsers()
             printf("Invalid choice");
             break;
         }
-        askRestart();
     }
 }
 void communications()
@@ -82,7 +81,6 @@ void communications()
             printf("Invalid choice");
             break;
         }
-        askRestart();
     }
 }
 
@@ -128,7 +126,6 @@ void development()
             printf("Invalid choice");
             break;
         }
-        askRestart();
     }
 }
 
@@ -170,7 +167,6 @@ void development2()
             printf("Invalid choice");
             break;
         }
-        askRestart();
     }
 }
 
@@ -204,7 +200,6 @@ void multimedia()
             printf("Invalid choice");
             break;
         }
-        askRestart();
     }
 }
 
@@ -247,7 +242,6 @@ void proTools()
             printf("Invalid choice");
             break;
         }
-        askRestart();
     }
 }
 
@@ -290,6 +284,5 @@ void utilities()
             printf("Invalid choice");
             break;
         }
-        askRestart();
     }
 }

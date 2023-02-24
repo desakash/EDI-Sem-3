@@ -89,14 +89,7 @@ void runconfig()
             legacyPanels();
             break;
         case 3:
-            printf("\n(1/4) Checking Disk");
-            system("powershell Chkdsk /scan");
-            printf("\n(2/4) SFC - 1st scan");
-            system("powershell sfc /scannow");
-            printf("\n(3/4) DISM");
-            system("powershell DISM /Online /Cleanup-Image /Restorehealth");
-            printf("\n(2/4) SFC - 2nd scan");
-            system("powershell sfc /scannow");
+            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\curroptionScan.ps1");
             break;
         case 4:
             return;

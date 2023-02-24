@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <fileapi.h>
+#include <Windows.h>
 
 void askRestart()
 {
@@ -109,7 +109,7 @@ int getDiskSpace()
     fResult = GetDiskFreeSpaceEx("C:", (PULARGE_INTEGER)&i64FreeBytesToCaller, (PULARGE_INTEGER)&i64TotalBytes, (PULARGE_INTEGER)&i64FreeBytes);
     if (fResult)
     {
-        printf("Free space on drive = %I64u MB\n", i64FreeBytes / (1024 * 1024));
+        printf("\nFree space on drive = %I64u MB\n", i64FreeBytes / (1024 * 1024));
     }
     int freeSpace = (int)i64FreeBytes / (1024 * 1024);
 
@@ -122,12 +122,14 @@ int spaceAvailable(char *AppCode)
     char row[1000];
     char *found;
     int flag = 0;
-    fp = fopen("data/locations.csv", "r");
+    fp = fopen("data/applications.csv", "r");
 
     while (feof(fp) != true)
     {
         fgets(row, 1000, fp);
         found = strtok(row, ",");
+
+        // get the last value from the row in found
         while (found != NULL)
         {
             if (strcmp(found, AppCode) == 0)
@@ -139,18 +141,20 @@ int spaceAvailable(char *AppCode)
             if (flag == 1)
             {
                 flag = 0;
+                printf("\nRequired Disk Space : %s MB", found);
+
+                if (atoi(found) <= getDiskSpace())
+                {
+                    printf("\nDisk Requirement Met...Proceeding to Install\n");
+                    return 1;
+                }
+                printf("\nInsufficient Disk Space...Software can not be Installed\n");
+                return 0;
+                break;
             }
             found = strtok(NULL, ",");
         }
     }
-    printf("\nRequired Disk Space : %s MB", found);
-    if (atoi(found) <= getDiskSpace())
-    {
-        printf("Disk Requirement Met...Proceeding to Install");
-        return 1;
-    }
-    printf("\nInsufficient Disk Space...Software can not be Installed");
-    return 0;
 }
 
 void processInstall(char *AppID)
@@ -164,6 +168,7 @@ void processInstall(char *AppID)
     char command[1000] = "powershell winget install -e --accept-source-agreements --accept-package-agreements --silent ";
     strcat(command, AppCode);
     system(command);
+    askRestart();
 }
 
 void installFeatures()
@@ -217,7 +222,7 @@ void legacyPanels()
     while (1)
     {
         printf("\n");
-        printf("1. Control Panel\n2. Network Connections\n3. Power Panel\n4. Sound Settings\n5. System Properties\n6. User Accounts\n7. Go Back\n");
+        printf("1. Control Panel\n2. Network Connections\n3. Power Panel\n4. Sound Settings\n5. System Properties\n6. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -238,9 +243,6 @@ void legacyPanels()
             system("cmd /c sysdm.cpl");
             break;
         case 6:
-            system("cmd /c 'control userpasswords2'");
-            break;
-        case 7:
             return;
         default:
             printf("Invalid Choice");
