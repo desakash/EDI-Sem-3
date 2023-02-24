@@ -108,3 +108,13 @@ void processInstall(char *AppID)
     strcat(command, AppCode);
     system(command);
 }
+
+void installFeatures()
+{
+    system("powershell Write-Host 'Hello'");
+}
+
+void legacyPanels()
+{
+    system("powershell Write-Host 'Hello'");
+}

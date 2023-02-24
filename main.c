@@ -71,6 +71,32 @@ void runtweeks()
     }
 }
 
+void runconfig()
+{
+    int choice;
+    while (1)
+    {
+        printf("\n");
+        printf("1. Windows Features\n2. Open Windows Legacy Panels\n3. Go Back\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            installFeatures();
+            break;
+        case 2:
+            legacyPanels();
+            break;
+        case 3:
+            return;
+        default:
+            printf("Invalid choice");
+            break;
+        }
+    }
+}
+
 int main()
 {
     system("powershell -ExecutionPolicy Bypass -File .\\scripts\\checkChocolatey.ps1");
@@ -79,7 +105,7 @@ int main()
     while (1)
     {
         printf("\n");
-        printf("\n1. Installs\n2. Tweaks\n3. Restart\n4. Exit\n");
+        printf("\n1. Installs\n2. Tweaks\n3. Config\n4. Restart\n5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -91,9 +117,12 @@ int main()
             runtweeks();
             break;
         case 3:
-            askRestart();
+            runconfig();
             break;
         case 4:
+            askRestart();
+            break;
+        case 5:
             return 0;
         default:
             printf("Invalid choice");
