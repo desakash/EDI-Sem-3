@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <fileapi.h>
 
 void askRestart()
 {
@@ -101,9 +102,65 @@ void setRegistry(char *name, int value)
     system(main);
 }
 
+int getDiskSpace()
+{
+    BOOL fResult;
+    unsigned __int64 i64FreeBytesToCaller, i64TotalBytes, i64FreeBytes;
+    fResult = GetDiskFreeSpaceEx("C:",(PULARGE_INTEGER)&i64FreeBytesToCaller,(PULARGE_INTEGER)&i64TotalBytes,(PULARGE_INTEGER)&i64FreeBytes);
+    if (fResult)
+    {
+        printf("Free space on drive = %I64u MB\n", i64FreeBytes / (1024 * 1024));
+    }
+    int freeSpace=(int)i64FreeBytes / (1024 * 1024);
+
+    return freeSpace;
+}
+
+int spaceAvailable(char *AppCode)
+{
+    FILE *fp;
+    char row[1000];
+    char *found;
+    int flag = 0;
+    fp = fopen("data/locations.csv", "r");
+
+    while (feof(fp) != true)
+    {
+        fgets(row, 1000, fp);
+        found = strtok(row, ",");
+        while (found != NULL)
+        {
+            if (strcmp(found, AppCode) == 0)
+            {
+                flag = 1;
+                found = strtok(NULL, ",");
+                continue;
+            }
+            if (flag == 1)
+            {
+                flag = 0;
+            }
+            found = strtok(NULL, ",");
+        }
+    }
+    printf("\nRequired Disk Space : %s MB",found);
+    if (atoi(found) <= getDiskSpace())
+    {
+        printf("Disk Requirement Met...Proceeding to Install");
+        return 1;
+    }
+    printf("\nInsufficient Disk Space...Software can not be Installed");
+    return 0;
+}
+
 void processInstall(char *AppID)
 {
     char *AppCode = getAppCode(AppID);
+    if (!spaceAvailable(AppCode))
+    {
+        return;
+    }
+
     char command[1000] = "powershell winget install -e --accept-source-agreements --accept-package-agreements --silent ";
     strcat(command, AppCode);
     system(command);
