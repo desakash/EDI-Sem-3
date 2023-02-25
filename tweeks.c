@@ -10,7 +10,7 @@ void essentialTweeks()
     while (1)
     {
         printf("\n");
-        printf("1. Create Restore Point\n2. Disable Wifi Sense\n3. Disable Activity History\n4. Delete Temporary Files\n5. Run Disk Cleanup\n6. Disable Location Tracking\n7. Disable Storage Sense\n8. Go Back\n");
+        printf("1. Create Restore Point\n2. Disable Wifi Sense\n3. Disable Activity History\n4. Delete Temporary Files\n5. Run Disk Cleanup\n6. Defragment Disk C\n7. Disable Location Tracking\n8. Disable Storage Sense\n9. Go Back\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -38,9 +38,13 @@ void essentialTweeks()
             system("powershell cmd /c cleanmgr.exe /d C: /VERYLOWDISK");
             break;
         case 6:
-            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\disableLocationTracking.ps1");
+            system("powershell Write-Host 'Running Disk Defragmentation on Drive C:...'");
+            system("powershell Optimize-Volume -DriveLetter C -Analyze -Verbose");
             break;
         case 7:
+            system("powershell -ExecutionPolicy Bypass -File .\\scripts\\tweeks\\disableLocationTracking.ps1");
+            break;
+        case 8:
             system("powershell Write-Host 'Disabling Storage Sense'");
             char *path = getFromcsv("StoragePolicy");
             char main[1000] = "powershell Remove-Item -Path '";
@@ -48,7 +52,7 @@ void essentialTweeks()
             strcat(main, "' -Recurse -ErrorAction SilentlyContinue");
             system(main);
             break;
-        case 8:
+        case 9:
             return;
         default:
             printf("Invalid choice");
